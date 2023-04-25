@@ -1,5 +1,5 @@
 git clone https://github.com/docker-ninja/go-app
 
-docker build -t iaml/golang-docker-app:v1 .
+docker build -t iaml/golang-docker-app:slim .
 
-docker run -itd --name my-go-app -p 8080:8080 iaml/golang-docker-app:v1
+docker run -itd --name my-go-app -p 8080:8080 iaml/golang-docker-app:slim
