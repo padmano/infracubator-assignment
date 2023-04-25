@@ -1,0 +1,29 @@
+git clone https://github.com/docker-ninja/go-app
+
+docker build -t iaml/golang-docker-app:slim .
+
+
+First container:
+
+    docker run -itd --name my-go-app -p 8080:8080  -v my_volume:/go-app-logs iaml/golang-docker-app:slim
+
+    docker exec -it my-go-app /bin/sh
+
+    echo "Hello" >> /go-app-logs/container1.txt
+
+    colima ssh
+    colima:/Users/padmanabhanm/Desktop/workspace/infracubator/docker/assignment4$ sudo cat /var/lib/docker/volumes/my_volume/_data/container1.txt
+    Hello
+
+
+Second container:
+
+    docker run -itd --name my-go-app-1 -p 8080:8080  -v my_volume:/go-app-logs iaml/golang-docker-app:slim
+
+    docker exec -it my-go-app-1 /bin/sh
+
+    echo "Welcome" >> /go-app-logs/container1.txt
+
+    colima ssh
+    colima:/Users/padmanabhanm/Desktop/workspace/infracubator/docker/assignment4$ sudo cat /var/lib/docker/volumes/my_volume/_data/container1.txt
+    Welcome
