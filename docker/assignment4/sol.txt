@@ -18,7 +18,7 @@ First container:
 
 Second container:
 
-    docker run -itd --name my-go-app-1 -p 8080:8080  -v my_volume:/go-app-logs iaml/golang-docker-app:slim
+    docker run -itd --name my-go-app-1 -p 8081:8080  -v my_volume:/go-app-logs iaml/golang-docker-app:slim
 
     docker exec -it my-go-app-1 /bin/sh
 
