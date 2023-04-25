@@ -1,0 +1,7 @@
+docker run --name nginx-server -d -p 8080:80 nginx
+
+docker logs -f nginx-server
+
+docker exec -it nginx-server bash
+
+docker stop nginx-server
