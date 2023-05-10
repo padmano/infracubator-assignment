@@ -22,7 +22,7 @@ Second container:
 
     docker exec -it my-go-app-1 /bin/sh
 
-    echo "Welcome" >> /go-app-logs/container1.txt
+    cat /go-app-logs/container1.txt
 
     colima ssh
     colima:/Users/padmanabhanm/Desktop/workspace/infracubator/docker/assignment4$ sudo cat /var/lib/docker/volumes/my_volume/_data/container1.txt
