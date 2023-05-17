@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-metadata-service-app
+  labels:
+    app: myapp
+spec:
+  containers:
+    - name: my-metadata-service-app
+      image: luckyganesh/metadata-service:v1

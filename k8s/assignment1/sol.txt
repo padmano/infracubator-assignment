@@ -1,0 +1,35 @@
+Create a deployment
+kubectl create -f k8s/assignment1/sol.yml
+
+Get pods
+kubectl get pods
+
+
+Logs:
+kubectl logs my-metadata-service-app
+
+
+Exec into the container using /bin/sh command.
+kubectl exec --stdin --tty my-metadata-service-app  -- /bin/bash
+
+Check the Pod IP and describe the pod
+❯ kubectl describe pod/my-metadata-service-app
+Name:             my-metadata-service-app
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.64.2
+Start Time:       Wed, 17 May 2023 14:31:58 +0530
+Labels:           app=myapp
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.16
+IPs:
+  IP:  10.244.0.16
+
+❯ minikube ssh
+
+Hit the api from inside the pod       
+$ curl 10.244.0.16:8080/metadata
+[]
+$ 
