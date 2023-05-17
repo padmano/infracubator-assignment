@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-mongo-db
+spec:
+  selector:
+    matchLabels:
+      app: my-mongo-db
+  template:
+    metadata:
+      labels:
+        app: my-mongo-db
+    spec:
+      containers:
+      - name: my-mongo-db
+        image: mongo
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
