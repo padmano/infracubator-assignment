@@ -33,3 +33,5 @@ Hit the api from inside the pod
 $ curl 10.244.0.16:8080/metadata
 []
 $ 
+$ curl 10.244.0.16:8080/actuator/health
+{"status":"UP"}$
