@@ -33,8 +33,3 @@ spec:
             initialDelaySeconds: 120
             periodSeconds: 25
             timeoutSeconds: 30
-  
-      curl --header "Content-Type: application/json" \
-      --request POST \
-      --data '{"group": "groupa", "name":"city", "value": "Pune"}' \
-      http://10.244.0.44:8080/metadata
