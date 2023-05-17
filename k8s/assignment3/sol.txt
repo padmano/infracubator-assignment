@@ -1,0 +1,15 @@
+kubectl create -f service.yml
+
+kubectl describe service/my-metadata-service-service
+
+$ curl localhost:30008/actuator/health
+{"status":"UP"}$
+
+$ curl --header "Content-Type: application/json" \
+>        --request POST \
+>        --data '{"group": "groupa", "name":"city", "value": "Pune"}' \
+>        http://localhost:30008/metadata
+{"id":"6464f1ad37b7670001ddf97a","message":"Successfully saved metadata."}$
+$ curl localhost:30008/metadata
+[{"lastUpdatedTs":"2023-05-17T15:24:45.881","group":"groupa","name":"city","id":"6464e83c6b018a00010c39e8"}]
+$
