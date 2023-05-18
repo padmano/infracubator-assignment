@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-metadata-app
+spec:
+  selector:
+    matchLabels:
+      app: my-metadata-app
+  template:
+    metadata:
+      labels:
+        app: my-metadata-app
+    spec:
+      containers:
+      - name: my-metadata-app
+        image: luckyganesh/metadata-service:v2
+        envFrom:
+          - configMapRef:
+              name: my-metadata-app-config
+        # env:
+        #   - name: MONGODB_URI
+        #     valueFrom:
+        #       configMapKeyRef:
+        #         name: my-metadata-app-config
+        #         key: MONGODB_URI
+

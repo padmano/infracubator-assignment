@@ -1,0 +1,47 @@
+kubectl create -f config.map.yml
+kubectl create -f mongo-deployment.yml
+kubectl create -f mongo-service.yml
+kubectl create -f app-deployment.yml
+kubectl create -f app-service.yml
+
+
+❯ kubectl describe cm/my-metadata-app-config
+Name:         my-metadata-app-config
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+
+Data
+====
+MONGODB_URI:
+----
+mongodb://my-mongo-db-service/metadata
+
+BinaryData
+====
+
+Events:  <none>
+
+
+
+❯ kubectl describe svc/my-metadata-app-service
+Name:              my-metadata-app-service
+Namespace:         default
+Labels:            <none>
+Annotations:       <none>
+Selector:          app=my-metadata-app
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.110.199.29
+IPs:               10.110.199.29
+Port:              <unset>  80/TCP
+TargetPort:        8080/TCP
+Endpoints:         10.244.0.53:8080
+Session Affinity:  None
+Events:            <none>
+
+
+
+$ curl 10.110.199.29/actuator/health
+{"status":"UP","details":{"diskSpace":{"status":"UP","details":{"total":18211586048,"free":14675460096,"threshold":10485760}},"mongo":{"status":"UP","details":{"version":"6.0.5"}}}}$
