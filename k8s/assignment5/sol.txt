@@ -1,0 +1,35 @@
+kubectl create -f mongo-deployment.yml
+kubectl create -f mongo-service.yml
+kubectl create -f app-deployment.yml
+kubectl create -f app-service.yml
+
+❯ kubectl describe service/my-metadata-app-service
+Name:              my-metadata-app-service
+Namespace:         default
+Labels:            <none>
+Annotations:       <none>
+Selector:          app=my-metadata-app
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.99.18.28
+IPs:               10.99.18.28
+Port:              <unset>  80/TCP
+TargetPort:        8080/TCP
+Endpoints:         10.244.0.51:8080
+Session Affinity:  None
+Events:            <none>
+
+
+$ curl 10.99.18.28/actuator/health
+{"status":"UP","details":{"diskSpace":{"status":"UP","details":{"total":18211586048,"free":14676049920,"threshold":10485760}},"mongo":{"status":"UP","details":{"version":"6.0.5"}}}}
+
+
+$ curl --header "Content-Type: application/json" \
+        --request POST \
+        --data '{"group": "groupb", "name":"city", "value": "Chennai"}' \
+        http://10.99.18.28/metadata
+{"id":"64651851c009870001314c50","message":"Successfully saved metadata."}
+
+$ curl 10.99.18.28/metadata
+[{"group":"groupb","lastUpdatedTs":"2023-05-17T18:10:18.106","name":"city","id":"64651851c009870001314c50"}]$ 
