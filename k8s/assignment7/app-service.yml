@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-metadata-app-service
+spec:
+  selector:
+    app: my-metadata-app
+  ports:
+  - port: 80
+    targetPort: 8080

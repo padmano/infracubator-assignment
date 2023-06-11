@@ -1,0 +1,20 @@
+kubectl create -f mongo-volume.yaml
+kubectl create -f mongo-volume-claim.yaml
+kubectl create -f mongo-deployment.yaml
+
+
+$ curl --header "Content-Type: application/json" \
+        --request POST \
+        --data '{"group": "groupb", "name":"city", "value": "Chennai"}' \
+        http://10.99.18.28/metadata
+{"id":"64651851c009870001314c50","message":"Successfully saved metadata."}
+
+
+
+❯ kubectl delete deployment mongo-deployment
+❯ kubectl create -f mongo-deployment.yml
+
+
+$ curl http://10.99.18.28/metadata
+
+[{"group":"groupb","lastUpdatedTs":"2023-05-27T18:10:18.106","name":"city","id":"64651851c009870001314c50"}]$ 
